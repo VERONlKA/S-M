@@ -10,6 +10,7 @@ public class DesktopLauncher {
 		config.width = SnakeGame.WIDTH;
 		config.height = SnakeGame.HEGHT;
 		config.title = SnakeGame.TITLE;
+
 		new LwjglApplication( new SnakeGame(), config);
 
 	}
