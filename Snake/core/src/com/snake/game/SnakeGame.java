@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.snake.game.state.ChooseAnAction;
 import com.snake.game.state.GameState;
 import com.snake.game.state.GameStateManager;
 import com.snake.game.state.MenuState;
@@ -29,7 +30,7 @@ public class SnakeGame extends Game {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         batch = new SpriteBatch();
         gsm = new GameStateManager();
-        gsm.push(new MenuState(gsm));
+        gsm.push(new ChooseAnAction(gsm));
         apple = new Texture("apple.png");
         bodySnake = new Texture("BodySnake.png");
         applesound = Gdx.audio.newSound(Gdx.files.internal("applesound.mp3"));
