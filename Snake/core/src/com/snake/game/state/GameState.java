@@ -11,6 +11,7 @@ public class GameState extends State {
         super(gsm);
         Background = new Texture("backround.png");
         snakeBody = new Texture("BodySnake.png");
+        camera.setToOrtho(false, SnakeGame.WIDTH , SnakeGame.HEGHT);
     }
 
     @Override
@@ -25,6 +26,7 @@ public class GameState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
+        sb.setProjectionMatrix(camera.combined);
 sb.begin();
 sb.draw(Background, 0, 0, SnakeGame.WIDTH, SnakeGame.HEGHT);
 sb.draw(snakeBody,64,64);

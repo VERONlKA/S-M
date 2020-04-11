@@ -16,6 +16,8 @@ public class MenuState extends State {
         playBtn = new Texture("playButton.png");
         logoSnake = new Texture("logoSnake.PNG");
         settingsBtn = new Texture("settingsButton.PNG");
+        camera.setToOrtho(false, SnakeGame.WIDTH , SnakeGame.HEGHT);
+
     }
 
     @Override
@@ -30,6 +32,7 @@ public class MenuState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
+        sb.setProjectionMatrix(camera.combined);
         sb.begin();
         sb.draw(backgroundMenu, 0,0, SnakeGame.WIDTH, SnakeGame.HEGHT);
         sb.draw(playBtn, 190, 120, 100,100  );
