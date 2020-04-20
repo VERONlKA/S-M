@@ -1,6 +1,7 @@
-package com.snake.game.state;
+package game;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.snake.game.state.State;
 
 import java.util.Stack;
 
