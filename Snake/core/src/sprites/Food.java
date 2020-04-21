@@ -91,7 +91,7 @@ public class Food {
         sixtyThree = new Texture("sixtythree.png");
         sixtyFour = new Texture("sixtyfour.png");
         seventy = new Texture("seventy.png");
-        seventyTwo = new Texture("seventytwo.png");
+        seventyTwo = new Texture("seventytwo.PNG");
         eighty = new Texture("eighty.png");
         eightyOne = new Texture("eightyone.png");
         ninty = new Texture("ninty.png");
