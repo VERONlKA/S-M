@@ -5,9 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.snake.game.state.DifficultyLevel;
-import com.snake.game.state.GameStateManager;
+import com.snake.game.state.LevelScreen;
 import com.snake.game.state.StartScreen;
 import game.GameScreen;
 
@@ -22,7 +20,6 @@ public class SnakeGame extends Game {
     public void create() {
         batch = new SpriteBatch();
         this.setScreen(new StartScreen(this));
-        this.setScreen(new GameScreen(this));
         applesound = Gdx.audio.newSound(Gdx.files.internal("applesound.mp3"));
         backroundmusic = Gdx.audio.newMusic(Gdx.files.internal("musicbackround.mp3"));
         backroundmusic.setLooping(true);

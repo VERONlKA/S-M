@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.snake.game.SnakeGame;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.snake.game.state.GameStateManager;
 
 public class StartScreen implements Screen {
 
@@ -21,9 +20,7 @@ public class StartScreen implements Screen {
     public StartScreen(SnakeGame snakeGame) {
         batch = new SpriteBatch();
         this.snakeGame = snakeGame;
-        //game.setScreen(new StartScreen(game));
         camera.setToOrtho(false, SnakeGame.WIDTH , SnakeGame.HEIGHT);
-
     }
 
     @Override
@@ -40,7 +37,6 @@ public class StartScreen implements Screen {
     @Override
     public void render(float delta) {
         batch.setProjectionMatrix(camera.combined);
-
         batch.begin();
         batch.draw(backGroundTexture, 0,0, SnakeGame.WIDTH,SnakeGame.HEIGHT);
         batch.draw(logoTexture, 95, 245, 290,290);
