@@ -8,7 +8,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = SnakeGame.WIDTH;
-		config.height = SnakeGame.HEGHT;
+		config.height = SnakeGame.HEIGHT;
 		config.title = SnakeGame.TITLE;
 
 		new LwjglApplication( new SnakeGame(), config);

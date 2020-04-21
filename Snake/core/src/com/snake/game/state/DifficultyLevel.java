@@ -19,7 +19,7 @@ public class DifficultyLevel extends State{
         medium = new Texture("medium.PNG");
         hard = new Texture("hard.PNG");
         back = new Texture("return.PNG");
-        camera.setToOrtho(false, SnakeGame.WIDTH , SnakeGame.HEGHT);
+        camera.setToOrtho(false, SnakeGame.WIDTH , SnakeGame.HEIGHT);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class DifficultyLevel extends State{
     public void render(SpriteBatch sb) {
         sb.setProjectionMatrix(camera.combined);
         sb.begin();
-        sb.draw(background, 0,0, SnakeGame.WIDTH, SnakeGame.HEGHT);
+        sb.draw(background, 0,0, SnakeGame.WIDTH, SnakeGame.HEIGHT);
         sb.draw(back, 79,700, 60,60);
         sb.draw(easy, 70,350, 330, 330);
         sb.draw(medium, 70, 210, 330,330);
