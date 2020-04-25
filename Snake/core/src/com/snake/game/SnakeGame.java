@@ -24,14 +24,12 @@ public class SnakeGame extends Game {
         backroundmusic = Gdx.audio.newMusic(Gdx.files.internal("musicbackround.mp3"));
         backroundmusic.setLooping(true);
         backroundmusic.play();
+
     }
 
     @Override
     public void render() {
         super.render();
-
-
-
     }
     @Override
     public void dispose() {
