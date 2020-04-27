@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,6 +19,7 @@ public class StartScreen implements Screen, InputProcessor {
     private SpriteBatch batch;
     private SnakeGame snakeGame;
     private Sprite startButtonSprite;
+    private Sound buttonSound;
 
     public StartScreen(SnakeGame snakeGame) {
         batch = new SpriteBatch();
@@ -61,6 +63,7 @@ public class StartScreen implements Screen, InputProcessor {
         startButtonTexture.dispose();
         logoTexture.dispose();
         startButtonSprite.getTexture().dispose();
+        buttonSound.dispose();
     }
 
     @Override
@@ -88,6 +91,10 @@ public class StartScreen implements Screen, InputProcessor {
         float pointerX = getCursorToModelX(Gdx.graphics.getWidth(), screenX);
         float pointerY = getCursorToModelY(Gdx.graphics.getHeight() , screenY);
         if (startButtonSprite.getBoundingRectangle().contains(pointerX, pointerY)) {
+            buttonSound = Gdx.audio.newSound(Gdx.files.internal("buttonSound.mp3"));
+            long id = buttonSound.play(0.3f);
+            buttonSound.setPitch(id, 1);
+            buttonSound.setLooping(id,false);
             snakeGame.setScreen(new ActionScreen(snakeGame));
             dispose();
         }
@@ -111,12 +118,12 @@ public class StartScreen implements Screen, InputProcessor {
 
 
 
-    public float getCursorToModelX(int screenX, int cursorX)
+    private float getCursorToModelX(int screenX, int cursorX)
     {
         return (((float)cursorX) * SnakeGame.WIDTH) / ((float)screenX);
     }
 
-    public float getCursorToModelY(int screenY, int cursorY)
+    private float getCursorToModelY(int screenY, int cursorY)
     {
         return ((float)(screenY - cursorY)) * SnakeGame.HEIGHT / ((float)screenY) ;
     }

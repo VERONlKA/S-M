@@ -3,6 +3,7 @@ package com.snake.game.state;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,6 +21,7 @@ public class LevelScreen implements Screen, InputProcessor {
     private SnakeGame snakeGame;
     private OrthographicCamera camera = new OrthographicCamera(SnakeGame.WIDTH, SnakeGame.HEIGHT);
     private Sprite backButtonSprite;
+    private Sound buttonSound;
 
     public LevelScreen(SnakeGame snakeGame) {
         batch = new SpriteBatch();
@@ -70,6 +72,16 @@ public class LevelScreen implements Screen, InputProcessor {
         easy.dispose();
         hard.dispose();
         medium.dispose();
+        buttonSound.dispose();
+        backButtonSprite.getTexture().dispose();
+    }
+
+    private void sound(){
+        buttonSound = Gdx.audio.newSound(Gdx.files.internal("buttonSound.mp3"));
+        long id = buttonSound.play(0.3f);
+        buttonSound.setPitch(id, 1);
+        buttonSound.setLooping(id,false);
+        snakeGame.setScreen(new StartScreen(snakeGame));
     }
 
     @Override
@@ -88,6 +100,7 @@ public class LevelScreen implements Screen, InputProcessor {
         float pointerX = getCursorToModelX(Gdx.graphics.getWidth(), screenX);
         float pointerY = getCursorToModelY(Gdx.graphics.getHeight() , screenY);
         if (backButtonSprite.getBoundingRectangle().contains(pointerX, pointerY)) {
+            sound();
             snakeGame.setScreen(new ActionScreen(snakeGame));
             dispose();
         }

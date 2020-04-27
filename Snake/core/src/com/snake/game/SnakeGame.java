@@ -15,6 +15,7 @@ public class SnakeGame extends Game {
     public static final String TITLE = "Snake&Math";
     private Sound applesound;
     private Music backroundmusic;
+    private Sound buttonSound;
     private SpriteBatch batch;
 
     public void create() {
@@ -22,10 +23,17 @@ public class SnakeGame extends Game {
         this.setScreen(new StartScreen(this));
         applesound = Gdx.audio.newSound(Gdx.files.internal("applesound.mp3"));
         backroundmusic = Gdx.audio.newMusic(Gdx.files.internal("musicbackround.mp3"));
+        buttonSound = Gdx.audio.newSound(Gdx.files.internal("buttonSound.mp3"));
         backroundmusic.setLooping(true);
+        backroundmusic.setVolume(0.1f);
         backroundmusic.play();
-
+/*
+        long id = buttonSound.play(0.3f);
+        buttonSound.setPitch(id, 1);
+        buttonSound.setLooping(id,false);
+*/
     }
+
 
     @Override
     public void render() {
@@ -33,5 +41,8 @@ public class SnakeGame extends Game {
     }
     @Override
     public void dispose() {
-        batch.dispose();}
+        batch.dispose();
+        backroundmusic.dispose();
+        buttonSound.dispose();
+    }
 }
