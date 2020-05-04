@@ -74,6 +74,7 @@ public class LevelScreen implements Screen, InputProcessor {
         medium.dispose();
         buttonSound.dispose();
         backButtonSprite.getTexture().dispose();
+        batch.dispose();
     }
 
     private void sound(){
