@@ -29,7 +29,6 @@ public class LevelScreen implements Screen, InputProcessor {
         camera.setToOrtho(false, SnakeGame.WIDTH , SnakeGame.HEIGHT);
     }
 
-
     @Override
     public void show() {
         background = new Texture("lakeBG.JPEG");
@@ -77,11 +76,7 @@ public class LevelScreen implements Screen, InputProcessor {
     }
 
     private void sound(){
-        buttonSound = Gdx.audio.newSound(Gdx.files.internal("buttonSound.mp3"));
-        long id = buttonSound.play(0.3f);
-        buttonSound.setPitch(id, 1);
-        buttonSound.setLooping(id,false);
-        snakeGame.setScreen(new StartScreen(snakeGame));
+        buttonSound.play(0.3f);
     }
 
     @Override
