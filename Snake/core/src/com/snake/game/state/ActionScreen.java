@@ -9,8 +9,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.snake.game.SnakeGame;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-
 import java.applet.Applet;
+
+public class ActionScreen implements Screen, InputProcessor {
+    private Texture background, addition, division, multiplication, subtraction, back, settingsBtn;
+    private Sprite backButtonSprite,additionSprite,subtractionSprite,divisionSprite,multiplicationSprite,settingsBTNSprite;
+    private SpriteBatch batch;
+    private Sound buttonSound;
+
 
 public class ActionScreen implements Screen, InputProcessor {
     private Texture background;
@@ -30,10 +36,14 @@ public class ActionScreen implements Screen, InputProcessor {
     private SpriteBatch batch;
     private Sound buttonSound;
 
+
     private SnakeGame snakeGame;
     private OrthographicCamera camera = new OrthographicCamera(SnakeGame.WIDTH, SnakeGame.HEIGHT);
 
     public ActionScreen(SnakeGame snakeGame) {
+        this.snakeGame = snakeGame;
+        camera.setToOrtho(false, SnakeGame.WIDTH , SnakeGame.HEIGHT);
+        buttonSound = Gdx.audio.newSound(Gdx.files.internal("buttonSound.mp3"));
         batch = new SpriteBatch();
         this.snakeGame = snakeGame;
         camera.setToOrtho(false, SnakeGame.WIDTH , SnakeGame.HEIGHT);
@@ -49,7 +59,10 @@ public class ActionScreen implements Screen, InputProcessor {
         additionSprite.setSize(180, 180);
         additionSprite.setPosition(60,380);
 
+        subtraction = new Texture("subtraction.PNG");
+
         subtraction = new Texture("substraction.PNG");
+
         subtractionSprite = new Sprite(subtraction);
         subtractionSprite.setSize(180,180);
         subtractionSprite.setPosition(240, 380);
@@ -91,6 +104,9 @@ public class ActionScreen implements Screen, InputProcessor {
     }
 
     private void sound(){
+
+        buttonSound.play(0.3f);
+
         buttonSound = Gdx.audio.newSound(Gdx.files.internal("buttonSound.mp3"));
         long id = buttonSound.play(0.3f);
         buttonSound.setPitch(id, 1);
@@ -149,6 +165,25 @@ public class ActionScreen implements Screen, InputProcessor {
         if (backButtonSprite.getBoundingRectangle().contains(pointerX, pointerY)) {
             sound();
             snakeGame.setScreen(new StartScreen(snakeGame));
+        } else if(additionSprite.getBoundingRectangle().contains(pointerX,pointerY)){
+            sound();
+            snakeGame.setScreen(new LevelScreen(snakeGame));
+
+        } else if(subtractionSprite.getBoundingRectangle().contains(pointerX,pointerY)) {
+            sound();
+            snakeGame.setScreen(new LevelScreen(snakeGame));
+
+        } else if(divisionSprite.getBoundingRectangle().contains(pointerX,pointerY)) {
+            sound();
+            snakeGame.setScreen(new LevelScreen(snakeGame));
+
+        } else if(multiplicationSprite.getBoundingRectangle().contains(pointerX,pointerY)) {
+            sound();
+            snakeGame.setScreen(new LevelScreen(snakeGame));
+
+        }else if (settingsBTNSprite.getBoundingRectangle().contains(pointerX,pointerY)){
+            sound();
+            snakeGame.setScreen(new PreferencesScreen(snakeGame));
             dispose();
         } else if(additionSprite.getBoundingRectangle().contains(pointerX,pointerY)){
             sound();
