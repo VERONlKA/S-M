@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.snake.game.SnakeGame;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import game.GameScreen;
+
 public class LevelScreen implements Screen, InputProcessor {
 
     private Texture background;
@@ -21,6 +23,7 @@ public class LevelScreen implements Screen, InputProcessor {
     private SnakeGame snakeGame;
     private OrthographicCamera camera = new OrthographicCamera(SnakeGame.WIDTH, SnakeGame.HEIGHT);
     private Sprite backButtonSprite;
+    private Sprite easyButton;
     private Sound buttonSound;
 
     public LevelScreen(SnakeGame snakeGame) {
@@ -41,6 +44,9 @@ public class LevelScreen implements Screen, InputProcessor {
         backButtonSprite= new Sprite(back);
         backButtonSprite.setSize(60,60);
         backButtonSprite.setPosition(70, 700);
+        easyButton = new Sprite(easy);
+        easyButton.setSize(380,130);
+        easyButton.setPosition(50, 450);
 
         Gdx.input.setInputProcessor(this);
     }
@@ -50,10 +56,10 @@ public class LevelScreen implements Screen, InputProcessor {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(background, 0,0, SnakeGame.WIDTH, SnakeGame.HEIGHT);
-        batch.draw(easy, 50,450, 380, 130);
         batch.draw(medium, 50, 300, 380,130);
         batch.draw(hard, 50, 150, 380,130);
         backButtonSprite.draw(batch);
+        easyButton.draw(batch);
         batch.end();
     }
 
@@ -105,6 +111,10 @@ public class LevelScreen implements Screen, InputProcessor {
             snakeGame.setScreen(new ActionScreen(snakeGame));
             dispose();
         }
+        else if(easyButton.getBoundingRectangle().contains(pointerX,pointerY)){
+            sound();
+            snakeGame.setScreen(new GameScreen(snakeGame));
+            dispose();}
         return true;
     }
     @Override

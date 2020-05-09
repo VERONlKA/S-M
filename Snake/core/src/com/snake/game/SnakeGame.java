@@ -12,7 +12,7 @@ import game.GameScreen;
 public class SnakeGame extends Game {
     public static final int HEIGHT = 800;
     public static final int WIDTH = 480;
-    public static final String TITLE = "Snake&Math";
+    public static final String TITLE = "MathSnake";
     private Sound applesound;
     private Music backroundmusic;
     private Sound buttonSound;
@@ -20,7 +20,7 @@ public class SnakeGame extends Game {
 
     public void create() {
         batch = new SpriteBatch();
-        this.setScreen(new StartScreen(this));
+        this.setScreen(new GameScreen(this));
         applesound = Gdx.audio.newSound(Gdx.files.internal("applesound.mp3"));
         backroundmusic = Gdx.audio.newMusic(Gdx.files.internal("musicbackround.mp3"));
         buttonSound = Gdx.audio.newSound(Gdx.files.internal("buttonSound.mp3"));

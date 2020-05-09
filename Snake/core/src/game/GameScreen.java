@@ -18,7 +18,7 @@ public class GameScreen implements Screen {
     private OrthographicCamera camera = new OrthographicCamera(width, height);
     private Viewport viewport;
     private SnakeGame snakeGame;
-    private GameState gameState = new GameState();
+    private GameState gameState ;
     public static Texture background;
     private SpriteBatch sb;
     private Bodypart bodypart;
@@ -26,6 +26,7 @@ public class GameScreen implements Screen {
 
     public GameScreen(SnakeGame snakeGame) {
         this.snakeGame = snakeGame;
+        gameState = new GameState(snakeGame);
         camera.setToOrtho(false, width, height);
         viewport = new FitViewport(width, height, camera);
         viewport.apply();

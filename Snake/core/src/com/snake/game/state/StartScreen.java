@@ -98,7 +98,7 @@ public class StartScreen implements Screen, InputProcessor {
             long id = buttonSound.play(0.3f);
             buttonSound.setPitch(id, 1);
             buttonSound.setLooping(id,false);
-            snakeGame.setScreen(new GameOverScreen(snakeGame));
+            snakeGame.setScreen(new ActionScreen(snakeGame));
             dispose();
         }
         return true;
