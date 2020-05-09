@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.snake.game.SnakeGame;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import game.GameScreen;
+
 public class StartScreen implements Screen, InputProcessor {
     private OrthographicCamera camera = new OrthographicCamera(SnakeGame.WIDTH, SnakeGame.HEIGHT);
     private Texture backGroundTexture;
@@ -64,6 +66,7 @@ public class StartScreen implements Screen, InputProcessor {
         logoTexture.dispose();
         startButtonSprite.getTexture().dispose();
         buttonSound.dispose();
+        batch.dispose();
     }
 
     @Override
@@ -95,7 +98,7 @@ public class StartScreen implements Screen, InputProcessor {
             long id = buttonSound.play(0.3f);
             buttonSound.setPitch(id, 1);
             buttonSound.setLooping(id,false);
-            snakeGame.setScreen(new ActionScreen(snakeGame));
+            snakeGame.setScreen(new GameOverScreen(snakeGame));
             dispose();
         }
         return true;

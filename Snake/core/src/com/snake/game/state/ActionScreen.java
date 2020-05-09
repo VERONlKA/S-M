@@ -9,12 +9,34 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.snake.game.SnakeGame;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import java.applet.Applet;
 
 public class ActionScreen implements Screen, InputProcessor {
     private Texture background, addition, division, multiplication, subtraction, back, settingsBtn;
     private Sprite backButtonSprite,additionSprite,subtractionSprite,divisionSprite,multiplicationSprite,settingsBTNSprite;
     private SpriteBatch batch;
     private Sound buttonSound;
+
+
+public class ActionScreen implements Screen, InputProcessor {
+    private Texture background;
+    private Texture addition;
+    private Texture division;
+    private Texture multiplication;
+    private Texture subtraction;
+    private Texture back;
+    private Texture settingsBtn;
+
+    private Sprite backButtonSprite;
+    private Sprite additionSprite;
+    private Sprite subtractionSprite;
+    private Sprite divisionSprite;
+    private Sprite multiplicationSprite;
+    private Sprite settingsBTNSprite;
+    private SpriteBatch batch;
+    private Sound buttonSound;
+
+
     private SnakeGame snakeGame;
     private OrthographicCamera camera = new OrthographicCamera(SnakeGame.WIDTH, SnakeGame.HEIGHT);
 
@@ -22,6 +44,9 @@ public class ActionScreen implements Screen, InputProcessor {
         this.snakeGame = snakeGame;
         camera.setToOrtho(false, SnakeGame.WIDTH , SnakeGame.HEIGHT);
         buttonSound = Gdx.audio.newSound(Gdx.files.internal("buttonSound.mp3"));
+        batch = new SpriteBatch();
+        this.snakeGame = snakeGame;
+        camera.setToOrtho(false, SnakeGame.WIDTH , SnakeGame.HEIGHT);
     }
 
     @Override
@@ -35,6 +60,9 @@ public class ActionScreen implements Screen, InputProcessor {
         additionSprite.setPosition(60,380);
 
         subtraction = new Texture("subtraction.PNG");
+
+        subtraction = new Texture("substraction.PNG");
+
         subtractionSprite = new Sprite(subtraction);
         subtractionSprite.setSize(180,180);
         subtractionSprite.setPosition(240, 380);
@@ -76,7 +104,14 @@ public class ActionScreen implements Screen, InputProcessor {
     }
 
     private void sound(){
+
         buttonSound.play(0.3f);
+
+        buttonSound = Gdx.audio.newSound(Gdx.files.internal("buttonSound.mp3"));
+        long id = buttonSound.play(0.3f);
+        buttonSound.setPitch(id, 1);
+        buttonSound.setLooping(id,false);
+        snakeGame.setScreen(new StartScreen(snakeGame));
     }
 
     @Override
@@ -100,6 +135,7 @@ public class ActionScreen implements Screen, InputProcessor {
         division.dispose();
         settingsBtn.dispose();
         buttonSound.dispose();
+        batch.dispose();
     }
 
     @Override
@@ -129,7 +165,6 @@ public class ActionScreen implements Screen, InputProcessor {
         if (backButtonSprite.getBoundingRectangle().contains(pointerX, pointerY)) {
             sound();
             snakeGame.setScreen(new StartScreen(snakeGame));
-
         } else if(additionSprite.getBoundingRectangle().contains(pointerX,pointerY)){
             sound();
             snakeGame.setScreen(new LevelScreen(snakeGame));
@@ -149,6 +184,23 @@ public class ActionScreen implements Screen, InputProcessor {
         }else if (settingsBTNSprite.getBoundingRectangle().contains(pointerX,pointerY)){
             sound();
             snakeGame.setScreen(new PreferencesScreen(snakeGame));
+            dispose();
+        } else if(additionSprite.getBoundingRectangle().contains(pointerX,pointerY)){
+            sound();
+            snakeGame.setScreen(new LevelScreen(snakeGame));
+            dispose();
+        } else if(subtractionSprite.getBoundingRectangle().contains(pointerX,pointerY)) {
+            sound();
+            snakeGame.setScreen(new LevelScreen(snakeGame));
+            dispose();
+        } else if(divisionSprite.getBoundingRectangle().contains(pointerX,pointerY)) {
+            sound();
+            snakeGame.setScreen(new LevelScreen(snakeGame));
+            dispose();
+        } else if(multiplicationSprite.getBoundingRectangle().contains(pointerX,pointerY)) {
+            sound();
+            snakeGame.setScreen(new LevelScreen(snakeGame));
+            dispose();
         }
         return true;
     }
